@@ -12,17 +12,13 @@ function processPosts() {
 	let image_url = _posts[random_post].img;
 	let title = _posts[random_post].title;
 	let description = _posts[random_post].description;
+	let description_two = _posts[random_post].description_two;
 
 	let days = _posts[random_post].days_left;
 
 	let contributions = _posts[random_post].contributions;
 	let current = _posts[random_post].current;
 	let goal = _posts[random_post].goal;
-
-	// ensures that the goal is never met so the progress bar is useful
-	while (current >= goal) {
-		current = current % 2;
-	}
 
 	let days_left = variableDaysLeft(days);
 
@@ -33,6 +29,7 @@ function processPosts() {
 		image_url,
 		title,
 		description,
+		description_two,
 		days_left,
 		contributions,
 		current,
@@ -60,6 +57,7 @@ function createHTML(
 	image_url,
 	title,
 	description,
+	description_two,
 	days_left,
 	contributions,
 	current,
@@ -97,13 +95,19 @@ function createHTML(
             </div>
             <div>
                 <p id="description">${description}</p>
+                <p id="description">${description_two}</p>
             </div>
             <div id="cta_container">
                 <a href="#" class="cta support">Support ${who} </a>
                 <a href="#" class="cta read">Read more </a>
-                <a href="#" onclick="location.reload();" class="cta next">Next post </a>
             </div>
         </div>
+    </div>
+
+    <div id="next_story">
+            <a href="#" id="next" onclick="location.reload();" class="cta next">random post </a>
+            <p id="next_text">you may get the same posts again and again but there are ${_posts.length} posts </p>
+
     </div>
     `;
 
